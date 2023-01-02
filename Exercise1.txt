@@ -1,0 +1,37 @@
+CREATE TABLE patient(
+	_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    pn int(11) UNSIGNED NOT NULL,
+    first varchar(15) DEFAULT NULL,
+    last varchar(25) DEFAULT NULL,
+    dob Date DEFAULT NULL,
+    PRIMARY KEY(_id)
+);
+
+CREATE TABLE insurance(
+    _id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    patient_id int(10) UNSIGNED NOT NULL,
+    iname varchar(40) DEFAULT NULL,
+    from_date Date DEFAULT NULL,
+    to_date Date DEFAULT NULL,
+    PRIMARY KEY(_id),
+    FOREIGN KEY(patient_id) REFERENCES patient(_id)
+);
+
+INSERT INTO patient(_id, pn, first, last, dob) VALUES
+(NULL, '1', 'John', 'Smith', '2002-7-04'),
+(NULL, '2', 'Jack', 'Ripper', '2001-7-04'),
+(NULL, '3', 'Jill', 'Gilian', '2003-7-04'),
+(NULL, '4', 'Bill', 'Black', '2009-7-04'),
+(NULL, '5', 'Ryan', 'Ray', '1977-7-04');
+
+INSERT INTO insurance(_id, patient_id, iname, from_date, to_date) VALUES
+(NULL, 1, 'Insurance1',  '2002-12-04', '2033-4-23'),
+(NULL, 1, 'Insurance2', '2009-8-04',  '2025-2-16'),
+(NULL, 2, 'Insurance3',  '2015-11-04', '2031-8-14'),
+(NULL, 2, 'Insurance4', '2006-3-04',  '2022-6-06'),
+(NULL, 3, 'Insurance3',  '2004-3-04', '2044-4-14'),
+(NULL, 3, 'Insurance1', '2018-5-04',  '2023-3-15'),
+(NULL, 4, 'Insurance3',  '2012-2-04', '2031-9-24'),
+(NULL, 4, 'Insurance5', '2001-4-04',  '2011-2-14'),
+(NULL, 5, 'Insurance4',  '2002-1-04', '2018-1-24'),
+(NULL, 5, 'Insurance2', '2003-3-04',  '2038-6-11');
